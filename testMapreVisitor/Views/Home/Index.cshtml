@@ -1,0 +1,39 @@
+﻿@model List<testMapreVisitor.Models.Visitor>
+@{
+    
+}
+
+<h1>Visitors</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Last name</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Mail</th>
+            <th scope="col">Data visit</th>
+            <th> </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var visitor in Model)
+        {
+            <tr>
+                <th scope="row">@visitor.Id</th>
+                <td>@visitor.Name</td>
+                <td>@visitor.LastName</td>
+                <td>@visitor.Phone</td>
+                <td>@visitor.Mail</td>
+                <td>@visitor.DateVisit.ToString("dd-MM-yyyy")</td>
+
+                <td>
+                    <a asp-route-Id="@visitor.Id" asp-controller="Home" asp-action="Edit" method="get"  class="btn btn-edit btn-primary btn-sm"><i class="bi bi-pencil-square" style="font-size: 1rem"></i></a>
+                    <a asp-route-Id="@visitor.Id" asp-controller="Home" asp-action="Delete"  method="get" class="btn btn-delete btn-danger btn-sm"><i class="bbi bi-trash3" style="font-size: 1rem"></i></a>
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+</table>

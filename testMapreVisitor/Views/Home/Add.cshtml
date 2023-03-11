@@ -1,0 +1,32 @@
+﻿@model testMapreVisitor.ViewModel.AddVisitorViewModel
+@{
+}
+
+<h1>Add visitor</h1>
+<form asp-controller="Home" asp-action="Add" method="post" class="mt-5">
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Name</label>
+        <input type="text" asp-validation-for="" class="form-control" asp-for="Name">
+    </div>
+
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Last name</label>
+        <input type="text" class="form-control" asp-for="LastName">
+    </div>
+
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Mail</label>
+        <input type="email" class="form-control" asp-for="Mail">
+    </div>
+
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Phone</label>
+        <input type="text" class="form-control" asp-for="Phone">
+    </div>
+
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Date visit</label>
+        <input type="date" class="form-control" asp-for="DateVisit">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

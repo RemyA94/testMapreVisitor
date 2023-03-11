@@ -1,0 +1,31 @@
+﻿
+@{
+}
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <form asp-controller="Logout" asp-action="LogoutUser" method="post">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Logout</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h3>
+                        <p>Are you sure you want to logout?</p>
+                    </h3>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-secondary" asp-action="DontLogoutUser">Close</button>
+                    <button type="submit" class="btn btn-primary" asp-controller="Logout"  asp-action="LogoutUser">Yes</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
