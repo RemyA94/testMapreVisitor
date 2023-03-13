@@ -1,6 +1,4 @@
-﻿using Microsoft.Build.Framework;
-using System.ComponentModel.DataAnnotations;
-using RequiredAttribute = Microsoft.Build.Framework.RequiredAttribute;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace testMapreVisitor.Models
 {

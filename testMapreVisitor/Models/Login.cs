@@ -1,6 +1,4 @@
-﻿using Microsoft.Build.Framework;
-using System.ComponentModel.DataAnnotations;
-using RequiredAttribute = Microsoft.Build.Framework.RequiredAttribute;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace testMapreVisitor.Models
 {
@@ -9,7 +7,6 @@ namespace testMapreVisitor.Models
         [Required]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-
 
         [Required]
         [DataType(DataType.Password)]

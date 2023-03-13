@@ -2,6 +2,28 @@
 @{
 }
 
-<p>
-    This page is only for Admin user :) 😎
-</p>
+<h1> 
+    This page is only for Admin user 😎
+    <button id="admin" class="btn btn-success">(～￣▽￣)～</button>
+</h1>
+
+
+
+@section Scripts{
+    <script>
+       document.getElementById('admin').addEventListener('click', ()=>{
+            Swal.fire({
+                width: 600,
+                padding: '3em',
+                color: '#1E1B4C',
+                background: '#fff url(/images/sponge-bob.gif)',
+                backdrop: `
+                    rgba(0,0,123,0.4)
+                    url("/images/git-gud-video-games.gif")
+                    left top
+                    no-repeat           `
+            })
+        })
+
+    </script>
+}

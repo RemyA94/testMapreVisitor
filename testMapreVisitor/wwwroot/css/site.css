@@ -36,10 +36,10 @@ tbody td {
     vertical-align: middle;
 }
 
-input {
+/*input {
     background-color: #f8f8fa !important;
 }
-
+*/
 .btn-warning {
     --bs-btn-bg: #ffe38f;
 }

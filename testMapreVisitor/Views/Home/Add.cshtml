@@ -1,32 +1,53 @@
 ﻿@model testMapreVisitor.ViewModel.AddVisitorViewModel
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SingInManager
 @{
+
 }
 
 <h1>Add visitor</h1>
-<form asp-controller="Home" asp-action="Add" method="post" class="mt-5">
+<form method="post" id="addForm" onsubmit="sendForm(event)" asp-controller="Home" asp-action="Add" class="mt-5">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
     <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Name</label>
-        <input type="text" asp-validation-for="" class="form-control" asp-for="Name">
+        <input type="text" asp-for="Model.Name" required class="form-control">
+        <span asp-validation-for="Model.Name" class="text-danger"></span>
     </div>
 
     <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Last name</label>
-        <input type="text" class="form-control" asp-for="LastName">
+        <input type="text" class="form-control" required asp-for="Model.LastName">
+        <span asp-validation-for="Model.LastName" class="text-danger"></span>
+
     </div>
 
     <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Mail</label>
-        <input type="email" class="form-control" asp-for="Mail">
+        <input type="email" class="form-control" required asp-for="Model.Mail">
+        <span asp-validation-for="Model.Mail" class="text-danger"></span>
+
     </div>
 
     <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Phone</label>
-        <input type="text" class="form-control" asp-for="Phone">
+        <input type="text" class="form-control" required asp-for="Model.Phone">
+        <span asp-validation-for="Model.Phone" class="text-danger"></span>
+
     </div>
 
     <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Date visit</label>
-        <input type="date" class="form-control" asp-for="DateVisit">
+        <input type="date" class="form-control" required asp-for="Model.DateVisit">
+        <span asp-validation-for="Model.DateVisit" class="text-danger"></span>
+
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial.cshtml">
+    
+}
+
+

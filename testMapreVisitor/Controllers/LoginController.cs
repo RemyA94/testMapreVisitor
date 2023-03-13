@@ -21,10 +21,12 @@ namespace testMapreVisitor.Controllers
         }
         public IActionResult Login()
         {
+
             return View();
         }
 
         [HttpPost]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> LoginUser( string returnUrl = null)
         {
             if( ModelState.IsValid)

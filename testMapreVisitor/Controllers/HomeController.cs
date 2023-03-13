@@ -9,9 +9,8 @@ using testMapreVisitor.ViewModel;
 namespace testMapreVisitor.Controllers
 {
     [Authorize]
-    public class HomeController : Controller
+    public class HomeController : Controller  
     {
-
 
         private readonly testMapreDbContext mapreDbContext;
 
@@ -20,45 +19,48 @@ namespace testMapreVisitor.Controllers
             this.mapreDbContext = testMapreDbContext;
         }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Admin()
         {
-            var admin = await mapreDbContext.UserRoles.ToListAsync();
+
+            var roles = await mapreDbContext.UserRoles.ToListAsync();
 
             return View();
         }
 
-        [AllowAnonymous]
+
         public IActionResult Register()
         {
             return View();
         }
-
-        [AllowAnonymous]
+ 
         public async Task<IActionResult> Index()
         {
+            
             var visitor = await mapreDbContext.visitors.ToListAsync();
             return View(visitor);
         }
 
-        [AllowAnonymous]
+        [Authorize(Roles="Admin")]
         public IActionResult Add()
         {
             return View();
         }
 
-        [AllowAnonymous]
+
         [HttpPost]
+        [Authorize(Roles="Admin")]
         public async Task<IActionResult> Add(AddVisitorViewModel addVisitorRequest)
         {
+
             var visitor = new Visitor()
             {
                 Id = Guid.NewGuid(),
-                Name = addVisitorRequest.Name,
-                LastName = addVisitorRequest.LastName,
-                Phone = addVisitorRequest.Phone,
-                Mail = addVisitorRequest.Mail,
-                DateVisit = addVisitorRequest.DateVisit,
+                Name = addVisitorRequest.Model.Name,
+                LastName = addVisitorRequest.Model.LastName,
+                Phone = addVisitorRequest.Model.Phone,
+                Mail = addVisitorRequest.Model.Mail,
+                DateVisit = addVisitorRequest.Model.DateVisit,
             };
 
             await mapreDbContext.visitors.AddAsync(visitor);
@@ -67,7 +69,7 @@ namespace testMapreVisitor.Controllers
 
         }
 
-        [AllowAnonymous]
+
         public async Task<IActionResult> Edit(Guid id)
         {
             var visitor = await mapreDbContext.visitors.FirstOrDefaultAsync(x => x.Id == id);
@@ -91,7 +93,7 @@ namespace testMapreVisitor.Controllers
         }
 
 
-        [AllowAnonymous]
+
         [HttpPost]
         public async Task<IActionResult> Edit(UpdateVisitorViewModel model)
         {
@@ -111,8 +113,8 @@ namespace testMapreVisitor.Controllers
             return RedirectToAction($"Index");
         }
 
-        [AllowAnonymous]
         [HttpGet]
+        [Authorize( Roles= "Admin")]
         public async Task<IActionResult> Delete(UpdateVisitorViewModel model)
         {
             var visitor = await mapreDbContext.visitors.FindAsync(model.Id);
@@ -127,7 +129,11 @@ namespace testMapreVisitor.Controllers
             return RedirectToAction("Index");
         }
 
-        [AllowAnonymous]
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

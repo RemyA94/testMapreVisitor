@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using System.Data;
 using testMapreVisitor.Models;
 using testMapreVisitor.ViewModel;
@@ -41,7 +42,7 @@ namespace testMapreVisitor.Controllers
                 };
 
                 var result = await userManager.CreateAsync(user, Model.Password);
-                if (result.Succeeded)
+                if (result.Succeeded == true)
                 {
                     await signInManager.SignInAsync(user, isPersistent: false);
                     return Redirect("~/Home/Index");
@@ -49,11 +50,10 @@ namespace testMapreVisitor.Controllers
 
                 foreach(var error in result.Errors)
                 {
-                    ModelState.AddModelError("", error.Description);
+                    ModelState.AddModelError(string.Empty, error.Description);
                 }
-            };
-
-            return View();
+            }
+            return View("Register");
         }
 
     }
